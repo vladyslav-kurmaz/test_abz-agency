@@ -1,6 +1,6 @@
 import './button.scss';
 
-const Button = ({text, onClick, disabled, link, teg}) => {
+const Button = ({text, onClick, disabled, link}) => {
     return (
         <a href={link} 
             onClick={onClick} 

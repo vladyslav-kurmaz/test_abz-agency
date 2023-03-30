@@ -58,6 +58,7 @@ const Workers = () => {
                 {!workers ? <Spinner/> : addWorkers(workers)}
             </ul>
             <Button text='Show more'
+                href={'#'}
                 onClick={showMore}
                 disabled={disabled}/>
 
