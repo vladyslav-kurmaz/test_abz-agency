@@ -1,20 +1,21 @@
-import Button from '../button/button'
+import React from 'react';
 
 import logo from '../../images/Logo.webp'
 
 import './header.scss'
 
-const Header = () => {
+const Header: React.FC = (): JSX.Element => {
     return (
         <header className='header'>
             <div className='logo header__logo'>
                 <a href="#main"><img src={logo} alt="main logo" /></a>
             </div>
             <div className='header__button-container'>
-                <Button text='Users' link={'#workers'}/>
-                <Button text='Sign up' link={'#singup'}/>
+                <a href='#workers' 
+                    className='addUser__form-submit'>Users</a>
+                <a href='#singup' 
+                    className='addUser__form-submit'>Sign up</a>
             </div>
-            
         </header>
     )
 }

@@ -1,14 +1,12 @@
 .main {
-    min-height: calc(100vh - 62px);
+    min-height: 650px; 
+    height: 100%;
     margin-bottom: 140px;
 
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    // align-items: center;
-    // flex-direction: column;
-    // justify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 
     &__container {
@@ -25,7 +23,7 @@
         justify-content: center;
 
         &-title {
-            // position: relative;
+            position: relative;
             z-index: 99;
             margin-bottom: 21px;
     
@@ -38,8 +36,8 @@
         }
     
         &-text {
-            // position: relative;
-            // z-index: 99;
+            position: relative;
+            z-index: 99;
             margin-bottom: 32px;
     
             max-width: 380px;
@@ -51,16 +49,9 @@
     }
 
     &__bg {
-        min-height: calc(100vh - 62px);
-        // overflow: hidden;
-        // min-height: 100%;
-        // position: absolute;
-        // z-index: 1;
-
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 1;
-        grid-row-end: 2;
+        position: absolute;
+        height: 100%;
+        z-index: 10;
         top: 0;
         left: 0;
         object-fit: cover;

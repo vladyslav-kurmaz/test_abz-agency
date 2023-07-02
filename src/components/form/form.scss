@@ -14,6 +14,7 @@
     }
 
     &__form {
+        position: relative;
         padding: 0 10px;
         margin: 0 auto;
         max-width: 380px;
@@ -45,44 +46,46 @@
             }
         }
 
-        &-info {
-            padding: 14px 16px;
-            width: 100%;
-            display: block;
-            margin-bottom: 50px;
-            outline: none;
+        &-user-container {
+            position: relative;
 
-            font-size: 16px;
-            line-height: 26px;
-
-            color: rgba(0, 0, 0, 0.87);
-
-            border: 1px solid #D0CFCF;
-            border-radius: 4px;
+            &-info,
+            & label &-info {
+                padding: 14px 16px;
+                width: 100%;
+                display: block;
+                margin-bottom: 50px;
+                outline: none;
     
-            &::placeholder {
-                color: #7E7E7E;
+                font-size: 16px;
+                line-height: 26px;
+    
+                color: rgba(0, 0, 0, 0.87);
+    
+                border: 1px solid #D0CFCF;
+                border-radius: 4px;
+        
+                &::placeholder {
+                    color: #7E7E7E;
+                }
+    
+                // &:last-child {
+                //     margin-bottom: 4px;
+                // }
             }
 
-            &:last-child {
-                margin-bottom: 4px;
+            &-input-error {
+                font-size: 15px;
+                width: 100%;
+                color: #ff0000;
+                position: absolute;
+                bottom: -25px;
+                left: 50%;
+                transform: translate(-50%);
             }
 
-            
         }
 
-        &-user label {
-            margin-bottom: 27px;
-            display: flex;
-            flex-direction: column;
-            text-align: start;
-
-            font-size: 12px;
-            line-height: 14px;
-
-            color: #7E7E7E;
-
-        }
 
 
         &-position {
@@ -147,10 +150,16 @@
         }
 
     }
-    
-
 
 }
+
+.form__error {
+    position: absolute;
+    bottom: 50px;
+    color: #ff0000;
+
+}
+
 
 @media screen and (max-width: 400px) {
     .addUser {

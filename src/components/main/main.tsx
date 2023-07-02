@@ -1,10 +1,10 @@
-import Button from '../button/button';
+import React from 'react'
 
 
 import mainBg from '../../images/main/main_background.webp'
 import './main.scss'
 
-const Main = () => {
+const Main: React.FC = (): JSX.Element => {
     return (
         <section className='main' id='main'>
             <img src={mainBg} alt="" className='main__bg'/>
@@ -16,8 +16,9 @@ const Main = () => {
                 <p className="main__container-text">
                     What defines a good front-end developer is one that has skilled knowledge of HTML, CSS, JS with a vast understanding of User design thinking as they'll be building web interfaces with accessibility in mind. They should also be excited to learn, as the world of Front-End Development keeps evolving.    
                 </p>
-
-                <Button text='Sign up' link={'#singup'}/>
+                <a 
+                    className='addUser__form-submit'
+                    href="#singup">Sign up</a>
             </div>
             
         </section>
