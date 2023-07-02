@@ -17,7 +17,12 @@ const Form: React.FC = (): JSX.Element => {
 
     const dispatch: ThunkDispatch<RootState, void, AnyAction> = useDispatch();
 
-    const {position, success, error409} = useSelector((state: IInitialState) => state)
+    const {position, success, error409} = useSelector((state: IInitialState) => ({
+        position: state.position,
+        success: state.success,
+        error409: state.error409
+      }))
+      
     const [newUser, setNewUser] = useState<IWorker>({
         name: '',
         email: '',

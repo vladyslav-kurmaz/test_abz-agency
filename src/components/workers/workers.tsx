@@ -16,8 +16,14 @@ import './workers.scss';
 
 const Workers: React.FC = (): JSX.Element => {
 
-  const dispatch: ThunkDispatch<RootState, void, AnyAction> = useDispatch();
-  const {workers, loading, count, disabled, error } = useSelector((state: IInitialState) => state)
+  const dispatch: ThunkDispatch<RootState, void, AnyAction> = useDispatch();  
+
+  const {workers, loading, count, disabled } = useSelector((state: IInitialState) => ({
+    workers: state.workers,
+    loading: state.loading,
+    count: state.count,
+    disabled: state.disabled
+  }))
 
 
   useEffect(() => {
