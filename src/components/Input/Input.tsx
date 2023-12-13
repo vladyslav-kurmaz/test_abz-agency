@@ -26,6 +26,7 @@ const Input = ({
 
   useEffect(() => {
     status((state) => ({ ...state, [name]: true }));
+    // eslint-disable-next-line
   }, [value]);
 
   const onFocus = (status: boolean) => {

@@ -1,8 +1,5 @@
 const useHttp = () => {
-  const request = async (
-    url: string,
-    set?: RequestInit | undefined
-  ) => {
+  const request = async (url: string, set?: RequestInit | undefined) => {
     try {
       const res = await fetch(url, set);
 

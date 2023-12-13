@@ -12,7 +12,7 @@ import { RootState } from "../../store/store";
 
 import Service from "../../service/service";
 import Spinner from "../spiner/spiner";
-import FormMessage from "../formMessage/formMessage";
+import FormMessage from "../FormMessage/formMessage";
 import { useAppSelector } from "../../hooks/reduxToolkidHooks";
 import {
   fetchPosition,
@@ -21,9 +21,9 @@ import {
   changeStatusError409,
 } from "../../store/reducers/workerReducer";
 import { TPosition, TStatusInfo, TWorker } from "../../types/types";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import "./form.scss";
+import "./Form.scss";
 import Input from "../Input/Input";
 import validationForm from "../../utils/validationForm";
 
@@ -75,7 +75,7 @@ const Form: React.FC = (): JSX.Element => {
 
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e: FormEvent) => {
     e.preventDefault();
-    dispatch(changeStatusError409(false))
+    dispatch(changeStatusError409(false));
     const formData = new FormData();
     formData.append("name", newUser.name);
     formData.append("email", newUser.email);
@@ -84,19 +84,17 @@ const Form: React.FC = (): JSX.Element => {
     formData.append("photo", newUser.photo);
 
     try {
-      const userPost = await postUser(formData)
+      // eslint-disable-next-line
+      const userPost = await postUser(formData);
 
-      dispatch(fetchData(6))
-      dispatch(changeSuccess(true))
-      
+      dispatch(fetchData(6));
+      dispatch(changeSuccess(true));
+
       setTimeout(() => {
         dispatch(changeSuccess(false));
-      }, 4000)
-
-     
+      }, 4000);
     } catch (e) {
-      // console.error(e);
-      dispatch(changeStatusError409(true))
+      dispatch(changeStatusError409(true));
     }
 
     setNewUser(() => ({
@@ -115,8 +113,7 @@ const Form: React.FC = (): JSX.Element => {
       position: false,
       positions_id: false,
       photo: false,
-    }))
-     
+    }));
   };
 
   const updateNewUserInfo = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -282,7 +279,6 @@ const Form: React.FC = (): JSX.Element => {
           </div>
         ) : null}
 
-       
         <button className="addUser__form-submit" disabled={disable}>
           Sing up
         </button>

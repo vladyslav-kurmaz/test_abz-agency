@@ -1,4 +1,4 @@
-import { useState, FC, MouseEvent, useEffect } from "react";
+import { useState, FC } from "react";
 import { TWorker } from "../../types/types";
 
 import "./worker.scss";
@@ -12,7 +12,9 @@ const Worker: FC<{ info: TWorker }> = ({ info }: { info: TWorker }) => {
   const cutEmail = email?.length > 30 ? `${email.slice(0, 30)}...` : email;
 
   const showAllMail = () => {
-    return email.length > 30 ? <span className="workers__item-mail-all">{email}</span> : null;
+    return email.length > 30 ? (
+      <span className="workers__item-mail-all">{email}</span>
+    ) : null;
   };
 
   return (

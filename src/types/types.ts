@@ -1,4 +1,3 @@
-
 export type TInitialState = {
   workers: TWorkers | null;
   maxCount: number;
@@ -8,13 +7,13 @@ export type TInitialState = {
   error: boolean;
   position: TPosition[] | [];
   success: boolean;
-  error409: boolean
-}
+  error409: boolean;
+};
 
 export type TPosition = {
   id: number;
-  name: string
-}
+  name: string;
+};
 
 export type TWorker = {
   email: string;
@@ -24,21 +23,21 @@ export type TWorker = {
   photo: string | File;
   position: string;
   positions_id: string;
-  registration_timestamp?: number
-}
+  registration_timestamp?: number;
+};
 
 export type TWorkers = TWorker[] | null;
 
 export type TToken = {
   success: boolean;
-  token: string
-}
+  token: string;
+};
 
 export type TValidatinForm = {
-  errorStatus: boolean
-  message: string
-  class: string
-}
+  errorStatus: boolean;
+  message: string;
+  class: string;
+};
 
 export type TStatusInfo = {
   name: boolean;
@@ -47,4 +46,4 @@ export type TStatusInfo = {
   position: boolean;
   positions_id: boolean;
   photo: boolean;
-}
+};

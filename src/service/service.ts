@@ -3,12 +3,11 @@ import { TToken } from "../types/types";
 
 const Service = () => {
   const _apiBase = "https://frontend-test-assignment-api.abz.agency/";
-  const _count = 6;    
-
+  const _count = 6;
 
   const { request } = useHttp();
 
-  const getUsers = async (count = _count) => {    
+  const getUsers = async (count = _count) => {
     const res = await request(`${_apiBase}api/v1/users?count=${count}`);
     return res.json();
   };
@@ -24,9 +23,9 @@ const Service = () => {
   };
 
   const postUser = async (formData: BodyInit) => {
-    const token: TToken = (await getToken());
-    
-    if (token && typeof token.token === 'string') {
+    const token: TToken = await getToken();
+
+    if (token && typeof token.token === "string") {
       try {
         const res = await request(`${_apiBase}api/v1/users`, {
           method: "POST",
@@ -35,16 +34,14 @@ const Service = () => {
         });
 
         if (!res.ok) {
-          return Promise.reject(res)
+          return Promise.reject(res);
         }
 
         return Promise.resolve(res);
       } catch (e) {
-        return Promise.reject(e)
+        return Promise.reject(e);
       }
-       
     }
-   
   };
 
   return {

@@ -34,20 +34,6 @@ const validationForm = (
           class: "",
         };
       }
-    // case 'surname':
-    //   if (value.length <= 2) {
-    //     return {
-    //       errorStatus: true,
-    //       message: 'Введіть більше 2 символів',
-    //       class: 'error'
-    //     }
-    //   } else {
-    //     return {
-    //       errorStatus: false,
-    //       message: 'Прізвище заповнено правильно',
-    //       class: 'done'
-    //     }
-    //   }
     case "email":
       // eslint-disable-next-line
       const validValueEmail = valueStr.match(/^[\w\.-]+@[\w\.-]+\.\w+$/);
@@ -80,7 +66,6 @@ const validationForm = (
       }
     case "phone":
       const telReg = /^(?:\+38\s?)?0\d{2}\s?(\d{3}\s?\d{2}\s?\d{2})$/;
-      const regexNum = /^[0-9+]+$/;
       if (valueStr.length === 0) {
         return {
           errorStatus: true,

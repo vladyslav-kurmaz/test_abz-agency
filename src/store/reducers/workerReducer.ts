@@ -12,28 +12,33 @@ const initialState: TInitialState = {
   position: [],
   success: false,
   error409: false,
-
 };
 
 export const fetchData = createAsyncThunk(
   `worker/fetchWorkers`,
-  async (count?: number) => {       
-    const { getUsers } = Service(); 
+  async (count?: number) => {
+    const { getUsers } = Service();
     return await getUsers(count);
   }
 );
 
-export const fetchPosition = createAsyncThunk(`worker/fetchPosition`, async () => {
-  const { getPosition } = Service();
-  return await getPosition();
-});
+export const fetchPosition = createAsyncThunk(
+  `worker/fetchPosition`,
+  async () => {
+    const { getPosition } = Service();
+    return await getPosition();
+  }
+);
 
 export const workerReducer = createSlice({
   name: "worker",
   initialState,
   reducers: {
     showMoreWorker: (state) => {
-      if (state.maxCount % 6 < 6 && state.maxCount % 6 + state.count === state.maxCount) {
+      if (
+        state.maxCount % 6 < 6 &&
+        (state.maxCount % 6) + state.count === state.maxCount
+      ) {
         state.count = state.maxCount;
         state.disabled = true;
       } else {
@@ -45,17 +50,16 @@ export const workerReducer = createSlice({
       state.success = action.payload;
     },
     changeStatusError409: (state, action) => {
-      state.error409 = action.payload
+      state.error409 = action.payload;
     },
-
   },
-  extraReducers: (builder) => {    
+  extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchData.fulfilled, (state, action) => {
-        state.maxCount = action.payload.total_users
+        state.maxCount = action.payload.total_users;
         state.workers = action.payload.users;
         state.loading = false;
       })
@@ -63,8 +67,7 @@ export const workerReducer = createSlice({
         state.error = true;
         state.loading = false;
       })
-      .addCase(fetchPosition.pending, (state, action) => {
-      })
+      .addCase(fetchPosition.pending, (state, action) => {})
       .addCase(fetchPosition.fulfilled, (state, action) => {
         state.position = [...action.payload.positions];
       })
@@ -77,8 +80,4 @@ const { actions, reducer } = workerReducer;
 
 export default reducer;
 
-export const { 
-  showMoreWorker,
-  changeSuccess,
-  changeStatusError409,
-} = actions;
+export const { showMoreWorker, changeSuccess, changeStatusError409 } = actions;

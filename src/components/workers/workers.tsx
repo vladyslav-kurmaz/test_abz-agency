@@ -20,6 +20,7 @@ const Workers: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(fetchData(count));
+    // eslint-disable-next-line
   }, [count]);
 
   const addWorkers = (data: TWorkers) => {
@@ -39,22 +40,22 @@ const Workers: React.FC = (): JSX.Element => {
   return (
     <section className="workers " id="workers">
       <h2 className="workers__title">Working with GET request</h2>
-      <ul className="workers__list"   >
+      <ul className="workers__list">
         {loading && count < 7 ? <Spinner /> : addWorkers(workers)}
       </ul>
-      
-      {loading ? 
-        <Spinner /> 
-        : 
+
+      {loading ? (
+        <Spinner />
+      ) : (
         <button
           className="addUser__form-submit"
           onClick={showMore}
-          style={(disabled ? { display: "none" } : { display: "block" })}
+          style={disabled ? { display: "none" } : { display: "block" }}
           disabled={disabled}
         >
           Show more
         </button>
-      }
+      )}
     </section>
   );
 };
