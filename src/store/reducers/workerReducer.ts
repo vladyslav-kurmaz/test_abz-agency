@@ -1,29 +1,31 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Service from "../../service/service";
-import { IInitialState } from "../../types/types";
+import { TInitialState } from "../../types/types";
 
-const initialState: IInitialState = {
+const initialState: TInitialState = {
   workers: null,
+  maxCount: 0,
   count: 6,
   disabled: false,
   loading: false,
   error: false,
   position: [],
   success: false,
-  error409: false
+  error409: false,
+
 };
 
 export const fetchData = createAsyncThunk(
   `worker/fetchWorkers`,
-  async (count?: number) => {   
+  async (count?: number) => {       
     const { getUsers } = Service(); 
     return await getUsers(count);
   }
 );
 
-export const fetchPosition = createAsyncThunk(`worker/fetchPosition`, () => {
+export const fetchPosition = createAsyncThunk(`worker/fetchPosition`, async () => {
   const { getPosition } = Service();
-  return getPosition();
+  return await getPosition();
 });
 
 export const workerReducer = createSlice({
@@ -31,8 +33,8 @@ export const workerReducer = createSlice({
   initialState,
   reducers: {
     showMoreWorker: (state) => {
-      if (state.count >= 96) {
-        state.count = 100;
+      if (state.maxCount % 6 < 6 && state.maxCount % 6 + state.count === state.maxCount) {
+        state.count = state.maxCount;
         state.disabled = true;
       } else {
         state.count = state.count + 6;
@@ -44,14 +46,16 @@ export const workerReducer = createSlice({
     },
     changeStatusError409: (state, action) => {
       state.error409 = action.payload
-    }
+    },
+
   },
-  extraReducers: (builder) => {
+  extraReducers: (builder) => {    
     builder
       .addCase(fetchData.pending, (state) => {
-        state.count > 6 ? (state.loading = false) : (state.loading = true);
+        state.loading = true;
       })
       .addCase(fetchData.fulfilled, (state, action) => {
+        state.maxCount = action.payload.total_users
         state.workers = action.payload.users;
         state.loading = false;
       })
@@ -59,7 +63,8 @@ export const workerReducer = createSlice({
         state.error = true;
         state.loading = false;
       })
-      .addCase(fetchPosition.pending, (state, action) => {})
+      .addCase(fetchPosition.pending, (state, action) => {
+      })
       .addCase(fetchPosition.fulfilled, (state, action) => {
         state.position = [...action.payload.positions];
       })
@@ -75,5 +80,5 @@ export default reducer;
 export const { 
   showMoreWorker,
   changeSuccess,
-  changeStatusError409
+  changeStatusError409,
 } = actions;

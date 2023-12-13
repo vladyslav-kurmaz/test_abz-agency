@@ -3,12 +3,22 @@
     position: sticky;
     top: 0px;
     z-index: 150;
-    max-width: 1170px;
-    min-height: 60px;
+    // max-width: 1170px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 60px;
+    
     background-color: rgba(255, 255, 255, 1);
+
+    &__container {
+        max-width: 1170px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
     &__logo img{
         width: 104px;

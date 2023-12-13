@@ -1,36 +1,48 @@
-
-import { onRequest } from "../hooks/http.hook";
-import { IToken } from "../types/types";
+import useHttp from "../hooks/http.hook";
+import { TToken } from "../types/types";
 
 const Service = () => {
   const _apiBase = "https://frontend-test-assignment-api.abz.agency/";
   const _count = 6;    
 
-  const getUsers = async (count = _count) => {
-    const res = await onRequest(`${_apiBase}api/v1/users?count=${count}`);
-    return  await res;
+
+  const { request } = useHttp();
+
+  const getUsers = async (count = _count) => {    
+    const res = await request(`${_apiBase}api/v1/users?count=${count}`);
+    return res.json();
   };
 
   const getToken = async () => {
-    const res = await onRequest(`${_apiBase}api/v1/token`);
-    return res;
+    const res = await request(`${_apiBase}api/v1/token`);
+    return res.json();
   };
 
   const getPosition = async () => {
-    const res = await onRequest(`${_apiBase}api/v1/positions`);
-    return res;
+    const res = await request(`${_apiBase}api/v1/positions`);
+    return res.json();
   };
 
   const postUser = async (formData: BodyInit) => {
-    const token: IToken = await getToken();
+    const token: TToken = (await getToken());
     
     if (token && typeof token.token === 'string') {
-        const res = await onRequest(`${_apiBase}api/v1/users`, {
-            method: "POST",
-            body: formData,
-            headers: { Token: token.token },
-          });
-          return await res;
+      try {
+        const res = await request(`${_apiBase}api/v1/users`, {
+          method: "POST",
+          body: formData,
+          headers: { Token: token.token },
+        });
+
+        if (!res.ok) {
+          return Promise.reject(res)
+        }
+
+        return Promise.resolve(res);
+      } catch (e) {
+        return Promise.reject(e)
+      }
+       
     }
    
   };

@@ -108,5 +108,13 @@
   },
   "include": [
     "src"  ],
-  "exclude": []
+  "exclude": [],
+  "baseUrl": "src",
+      "paths": {
+        "components/*": ["./components/*"],
+        "app/*": ["./app/*"],
+        "hooks/*": ["./hooks/*"],
+        "redux/*": ["./reduxFolder/*"],
+        "types/*": ["./types/*"],
+      },
 }

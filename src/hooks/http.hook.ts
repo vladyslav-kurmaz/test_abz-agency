@@ -1,20 +1,24 @@
-
-  export const onRequest = async (url: string, set?: RequestInit ) => {
+const useHttp = () => {
+  const request = async (
+    url: string,
+    set?: RequestInit | undefined
+  ) => {
     try {
-      const res = await fetch(url, set)
-            
-      if (res.status === 409) {
-        return res.status
-      }
-  
-      if (!res.ok) {
-          throw new Error(`Could not fetch ${url}, status: ${res.status}`)
-      }
-      
-  
-      return await res.json();  
-    } catch(e) {
-      throw e
-    }
-  }
+      const res = await fetch(url, set);
 
+      if (!res.ok) {
+        return await Promise.reject(res);
+      }
+
+      return await Promise.resolve(res);
+    } catch (e) {
+      return await Promise.reject(e);
+    }
+  };
+
+  return {
+    request,
+  };
+};
+
+export default useHttp;
