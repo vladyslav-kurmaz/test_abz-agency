@@ -1,7 +1,7 @@
 import Header from "../header/header";
 import Main from "../main/main";
 import Workers from "../workers/workers";
-import Form from "../Form/Form";
+import Form from "../form/form";
 
 import "./app.scss";
 

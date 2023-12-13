@@ -12,7 +12,7 @@ import { RootState } from "../../store/store";
 
 import Service from "../../service/service";
 import Spinner from "../spiner/spiner";
-import FormMessage from "../FormMessage/formMessage";
+import FormMessage from "../formMessage/formMessage";
 import { useAppSelector } from "../../hooks/reduxToolkidHooks";
 import {
   fetchPosition,
@@ -23,7 +23,7 @@ import {
 import { TPosition, TStatusInfo, TWorker } from "../../types/types";
 import { useDispatch } from "react-redux";
 
-import "./Form.scss";
+import "./form.scss";
 import Input from "../Input/Input";
 import validationForm from "../../utils/validationForm";
 
