@@ -3,7 +3,7 @@ import Main from "../main/main";
 import Workers from "../workers/workers";
 import Form from "../Form/Form";
 
-import "./App.scss";
+import "./app.scss";
 
 function App() {
   return (
